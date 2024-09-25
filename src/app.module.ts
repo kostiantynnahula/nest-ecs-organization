@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [PrismaModule, OrganizationsModule],
+  imports: [ConfigModule.forRoot({}), PrismaModule, OrganizationsModule],
   controllers: [AppController],
   providers: [AppService],
 })

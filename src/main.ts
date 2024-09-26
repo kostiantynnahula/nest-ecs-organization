@@ -30,8 +30,10 @@ async function bootstrap() {
     .setVersion('0.1')
     .build();
 
+  app.setGlobalPrefix('organization');
+
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('organization/api', app, document);
 
   await app.listen(configService.get<number>('PORT') || 3000);
 }

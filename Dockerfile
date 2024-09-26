@@ -41,6 +41,6 @@ RUN npx prisma generate
 
 COPY --from=development /usr/src/app/dist ./dist
 
-EXPOSE ${PORT}
+EXPOSE 3000
 
-CMD ["npm", "run", "start:prod", "dist/main"]
+CMD ["npm", "run", "start:prod"]

@@ -1,17 +1,11 @@
 import { Module } from '@nestjs/common';
-import { OrganizationsService } from './organizations.service';
-import { OrganizationsController } from './organizations.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PatientService } from './patient.service';
+import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PATIENT_SERVICE } from 'src/utils/constants';
-import { ConfigService } from '@nestjs/config';
-import { PatientModule } from 'src/patient/patient.module';
-import { PatientService } from 'src/patient/patient.service';
 
 @Module({
   imports: [
-    PrismaModule,
-    PatientModule,
     ClientsModule.registerAsync([
       {
         name: PATIENT_SERVICE,
@@ -26,7 +20,7 @@ import { PatientService } from 'src/patient/patient.service';
       },
     ]),
   ],
-  controllers: [OrganizationsController],
-  providers: [OrganizationsService, PatientService],
+  providers: [PatientService],
+  exports: [PatientService],
 })
-export class OrganizationsModule {}
+export class PatientModule {}

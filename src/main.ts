@@ -4,12 +4,21 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
+import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
+
+  app.connectMicroservice({
+    transport: Transport.TCP,
+    options: {
+      host: '0.0.0.0',
+      port: configService.get('TCP'),
+    },
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -33,8 +42,10 @@ async function bootstrap() {
   app.setGlobalPrefix('organization');
 
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('organization/api', app, document);
 
+  await app.startAllMicroservices();
   await app.listen(configService.get<number>('PORT') || 3000);
 }
 bootstrap();

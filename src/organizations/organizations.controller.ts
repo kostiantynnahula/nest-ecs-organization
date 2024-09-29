@@ -10,10 +10,14 @@ import {
 import { OrganizationsService } from './organizations.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { PatientService } from 'src/patient/patient.service';
 
-@Controller('organization')
+@Controller()
 export class OrganizationsController {
-  constructor(private readonly organizationsService: OrganizationsService) {}
+  constructor(
+    private readonly organizationsService: OrganizationsService,
+    private readonly patientService: PatientService,
+  ) {}
 
   @Post()
   create(@Body() createOrganizationDto: CreateOrganizationDto) {
@@ -23,6 +27,11 @@ export class OrganizationsController {
   @Get()
   findAll() {
     return this.organizationsService.findAll();
+  }
+
+  @Get('patients')
+  async getPatients() {
+    return await this.patientService.findAll();
   }
 
   @Get(':id')

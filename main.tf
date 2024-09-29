@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "nest-ecs-tfstate-bucket" // bucket name
+    bucket         = "nest-ecs-organization-tfstate-bucket" // bucket name
     key            = "terraform.tfstate"
     region         = "eu-west-1"
-    dynamodb_table = "nest-ecs-terraform-lock-state" // dynamodb table name
+    dynamodb_table = "nest-ecs-organization-terraform-lock-state" // dynamodb table name
     encrypt        = true
   }
 }
@@ -96,7 +96,7 @@ resource "aws_ecs_task_definition" "organization_task" {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/nest-ecs",
+          "awslogs-group": "/ecs/nest-ecs-organization",
           "awslogs-region": "eu-west-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -104,4 +104,9 @@ resource "aws_ecs_task_definition" "organization_task" {
     }
   ]
   DEFINITION
+}
+
+resource "aws_cloudwatch_log_group" "ecs_log_group" {
+  name              = "/ecs/nest-ecs-organization"
+  retention_in_days = 7
 }

@@ -4,8 +4,9 @@ variable "region" {
 }
 
 variable "container_image" {
-  type    = string
-  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:966d5f1-2024-09-26-11-37"
+  type = string
+  # default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:966d5f1-2024-09-26-11-37"
+  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:e585ef6-2024-09-27-11-44"
 }
 
 variable "cluster_id" {

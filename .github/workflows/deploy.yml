@@ -57,7 +57,10 @@ jobs:
       run: |
         docker build \
           --build-arg DATABASE_URL="${DATABASE_URL}" \
-          --build-arg PORT=3000 \
+          --build-arg PORT=4000 \
+          --build-arg TCP=4001 \
+          --build-arg PATIENT_HOST=patient-service.services.local \
+          --build-arg PATIENT_PORT=3001 \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 

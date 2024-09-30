@@ -6,7 +6,7 @@ variable "region" {
 variable "container_image" {
   type = string
   # default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:966d5f1-2024-09-26-11-37"
-  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:e585ef6-2024-09-27-11-44"
+  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:6e36d33-2024-09-30-13-02"
 }
 
 variable "cluster_id" {
@@ -21,7 +21,7 @@ variable "default_vpc_id" {
 
 variable "alb_lb_listener_rule_arn" {
   type    = string
-  default = "arn:aws:elasticloadbalancing:eu-west-1:524147404421:listener/app/nest-ecs-alb/0d7e2a1cf2f835cf/c2180cb3f514ac0f"
+  default = "arn:aws:elasticloadbalancing:eu-west-1:524147404421:listener/app/nest-ecs-alb/48eb46583c234fd8/ae9adb21b485ee3e"
 }
 
 variable "default_subnet_a_id" {
@@ -36,7 +36,7 @@ variable "default_subnet_b_id" {
 
 variable "ecs_service_sg_id" {
   type    = string
-  default = "sg-0440aed8e339e4166"
+  default = "sg-012db04e1880d6abd"
 }
 
 variable "ecs_task_execution_role_arn" {

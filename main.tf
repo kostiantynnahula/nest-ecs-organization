@@ -21,14 +21,14 @@ provider "aws" {
 
 resource "aws_lb_target_group" "organization_target_group" {
   name        = "organization-target-group"
-  port        = 3000
+  port        = 4000
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = var.default_vpc_id # default VPC
   health_check {
     path                = "/organization/health"
     protocol            = "HTTP"
-    port                = "3000"
+    port                = "4000"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
@@ -59,7 +59,7 @@ resource "aws_ecs_service" "organization_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.organization_target_group.arn
     container_name   = "nest-ecr-organization"
-    container_port   = 3000
+    container_port   = 4000
   }
 
   network_configuration {
@@ -89,7 +89,7 @@ resource "aws_ecs_task_definition" "organization_task" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 3000,
+          "containerPort": 4000,
           "protocol": "tcp"
         }
       ],

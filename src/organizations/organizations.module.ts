@@ -15,13 +15,15 @@ import { PatientService } from 'src/patient/patient.service';
     ClientsModule.registerAsync([
       {
         name: PATIENT_SERVICE,
-        useFactory: (configService: ConfigService) => ({
-          transport: Transport.TCP,
-          options: {
-            host: configService.get('PATIENT_HOST'),
-            port: configService.get('PATIENT_PORT'),
-          },
-        }),
+        useFactory: (configService: ConfigService) => {
+          return {
+            transport: Transport.TCP,
+            options: {
+              host: configService.get('PATIENT_HOST'),
+              port: configService.get('PATIENT_PORT'),
+            },
+          };
+        },
         inject: [ConfigService],
       },
     ]),

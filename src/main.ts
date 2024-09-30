@@ -12,6 +12,9 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
+  console.log(configService.get('PATIENT_HOST'), 'host');
+  console.log(configService.get('PATIENT_PORT'), 'port');
+
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {

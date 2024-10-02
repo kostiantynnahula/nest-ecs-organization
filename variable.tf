@@ -4,42 +4,6 @@ variable "region" {
 }
 
 variable "container_image" {
-  type = string
-  # default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:966d5f1-2024-09-26-11-37"
-  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:6e36d33-2024-09-30-13-02"
-}
-
-variable "cluster_id" {
   type    = string
-  default = "arn:aws:ecs:eu-west-1:524147404421:cluster/nest-ecs-microservice-cluster"
-}
-
-variable "default_vpc_id" {
-  type    = string
-  default = "vpc-0636baa2b10378148"
-}
-
-variable "alb_lb_listener_rule_arn" {
-  type    = string
-  default = "arn:aws:elasticloadbalancing:eu-west-1:524147404421:listener/app/nest-ecs-alb/48eb46583c234fd8/ae9adb21b485ee3e"
-}
-
-variable "default_subnet_a_id" {
-  type    = string
-  default = "subnet-0f2628a3d03818748"
-}
-
-variable "default_subnet_b_id" {
-  type    = string
-  default = "subnet-054a31781cae0c6f9"
-}
-
-variable "ecs_service_sg_id" {
-  type    = string
-  default = "sg-012db04e1880d6abd"
-}
-
-variable "ecs_task_execution_role_arn" {
-  type    = string
-  default = "arn:aws:iam::524147404421:role/ecsTasksExecutionRole"
+  default = "524147404421.dkr.ecr.eu-west-1.amazonaws.com/nest-ecr-organization:794c530-2024-10-02-16-05"
 }

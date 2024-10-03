@@ -12,9 +12,6 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  console.log(configService.get('PATIENT_HOST'), 'patient_host');
-  console.log(configService.get('PATIENT_PORT'), 'patient_port');
-
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {
@@ -49,7 +46,6 @@ async function bootstrap() {
   SwaggerModule.setup('organization/api', app, document);
 
   const port = configService.get<number>('PORT') || 3000;
-  console.log(port, 'port');
   await app.startAllMicroservices();
   await app.listen(port);
 }

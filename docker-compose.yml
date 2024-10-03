@@ -25,6 +25,8 @@ services:
         DATABASE_URL: $DATABASE_URL
         PORT: $PORT
         TCP: $TCP
+        PATIENT_HOST: $PATIENT_HOST
+        PATIENT_PORT: $PATIENT_PORT
       dockerfile: ./Dockerfile
       target: development
     command: sh -c "npx prisma migrate dev && npm run start:dev"
